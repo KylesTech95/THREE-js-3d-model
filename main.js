@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 const sphereGeometry = new THREE.SphereGeometry(1.5,32,32)
+// const triGeometry = new THREE.t
 /*
 We need 4 elements to get started:
 
@@ -15,10 +16,13 @@ const geometry = new THREE.BoxGeometry(1,1,1)
 // To create the material, we use the MeshBasicMaterial class with one parameter: an object {} containing all the options.
 const material = new THREE.MeshBasicMaterial({color:`red`})
 // To create the final mesh, we use the Mesh class and send the geometry and the material as parameters.
-const mesh = new THREE.Mesh(sphereGeometry,material)
+const mesh = new THREE.Mesh(geometry,material)
+const lineMaterial = new THREE.LineBasicMaterial({color:'#000'})
+
+const line = new THREE.Line(geometry,lineMaterial)
 // plug your mesh into the scene
 scene.add(mesh)
-
+scene.add(line);
 // 2)
 // field of view (fov)(degree) & height and width aspect ratios
 const aRatio = {
@@ -28,7 +32,6 @@ const aRatio = {
 const fov = 75
 const camera = new THREE.PerspectiveCamera(fov,aRatio.width/aRatio.height)
 camera.position.z = 3
-camera.rotateY(18.75)
 
 
 scene.add(camera)
@@ -40,5 +43,16 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(aRatio.width,aRatio.height)
 
-// 4 render
-renderer.render(scene,camera)
+
+
+// render animation
+const renderAnimation = () => {
+    requestAnimationFrame( renderAnimation )
+    // animation transform
+    mesh.rotation.x += 0.01;
+    mesh.rotation.y += 0.01;
+
+    // 4 render
+    renderer.render( scene,camera )
+}
+renderAnimation();
