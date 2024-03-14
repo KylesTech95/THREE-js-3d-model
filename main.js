@@ -27,6 +27,18 @@ const aRatio = {
 }
 const fov = 75
 const camera = new THREE.PerspectiveCamera(fov,aRatio.width/aRatio.height)
+camera.position.z = 3
+camera.rotateY(18.75)
+
+
 scene.add(camera)
 
+// 3 
+const canvas = document.querySelector('.three-canvas')
+const renderer = new THREE.WebGLRenderer({
+    canvas:canvas
+})
+renderer.setSize(aRatio.width,aRatio.height)
 
+// 4 render
+renderer.render(scene,camera)
