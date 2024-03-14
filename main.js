@@ -15,7 +15,7 @@ const geometry = new THREE.BoxGeometry(1,1,1)
 // To create the material, we use the MeshBasicMaterial class with one parameter: an object {} containing all the options.
 const material = new THREE.MeshBasicMaterial({color:`red`})
 // To create the final mesh, we use the Mesh class and send the geometry and the material as parameters.
-const mesh = new THREE.Mesh(geometry,material)
+const mesh = new THREE.Mesh(sphereGeometry,material)
 // plug your mesh into the scene
 scene.add(mesh)
 
