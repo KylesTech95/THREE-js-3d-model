@@ -12,17 +12,14 @@ We need 4 elements to get started:
 */
 // 1)
 const scene = new THREE.Scene();
-const geometry = new THREE.BoxGeometry(1,1,1)
+const geometry = new THREE.BoxGeometry(1.25,1.25,2.5)
 // To create the material, we use the MeshBasicMaterial class with one parameter: an object {} containing all the options.
 const material = new THREE.MeshBasicMaterial({color:`red`})
 // To create the final mesh, we use the Mesh class and send the geometry and the material as parameters.
 const mesh = new THREE.Mesh(geometry,material)
-const lineMaterial = new THREE.LineBasicMaterial({color:'#000'})
 
-const line = new THREE.Line(geometry,lineMaterial)
 // plug your mesh into the scene
 scene.add(mesh)
-scene.add(line);
 // 2)
 // field of view (fov)(degree) & height and width aspect ratios
 const aRatio = {
@@ -44,13 +41,13 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(aRatio.width,aRatio.height)
 
 
-
+mesh
 // render animation
 const renderAnimation = () => {
     requestAnimationFrame( renderAnimation )
     // animation transform
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.01;
+    mesh.rotation.x += 0.0025;
+    mesh.rotation.y += 0.0025;
 
     // 4 render
     renderer.render( scene,camera )
