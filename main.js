@@ -46,8 +46,15 @@ mesh
 const renderAnimation = () => {
     requestAnimationFrame( renderAnimation )
     // animation transform
-    mesh.rotation.x += 0.0025;
-    mesh.rotation.y += 0.0025;
+    
+let c = .005
+    for(let i = 0; i <= 5; i++){
+        let next=(c+=.025)
+        setTimeout(()=>{
+            mesh.rotation.x += next;
+            mesh.rotation.y += next;
+        },2000*(i+1))
+    }
 
     // 4 render
     renderer.render( scene,camera )
