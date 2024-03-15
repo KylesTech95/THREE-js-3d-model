@@ -10,40 +10,40 @@ We need 4 elements to get started:
 4) A renderer
 
 */
+
+
+
 // 1)
 const scene = new THREE.Scene();
 const geometry = new THREE.BoxGeometry(1.5,1.5,3)
-
 // To create the material, we use the MeshBasicMaterial class with one parameter: an object {} containing all the options.
 const material = new THREE.MeshBasicMaterial({color:`violet`,transparent:true,opacity:.6})//transparent:true,opacity:.5
 // To create the final mesh, we use the Mesh class and send the geometry and the material as parameters.
 const mesh = new THREE.Mesh(geometry,material)
-
-
 // add opacity to mesh
-// const addOpacity = () => {
-//     mesh.material.transparent=true;
-//     mesh.material.opacity=.5;
-//     return;
-//  } 
-//  addOpacity()
- 
+const addOpacity = () => {
+    mesh.material.transparent=true;
+    mesh.material.opacity=.5;
+    return;
+ } 
+ addOpacity()
+
 // plug your mesh into the scene
 scene.add(mesh)
+
+
+
 // 2)
 // field of view (fov)(degree) & height and width aspect ratios
-const aRatio = {
-    height:550,
-    width:750
+let body = document.querySelector('body')
+let aRatio = {
+    height:body.clientHeight,
+    width:body.clientWidth
 }
-const fov = 75
-const camera = new THREE.PerspectiveCamera(fov,aRatio.width/aRatio.height)
-camera.position.z = 3
-const newCameraAngle = new THREE.PerspectiveCamera(25,450/550)
-
-
-
-scene.add(newCameraAngle``)
+const fov = 50
+let camera = new THREE.PerspectiveCamera(fov,(aRatio.width/aRatio.height))
+camera.position.z = 3    
+scene.add(camera)
 
 // 3 
 const canvas = document.querySelector('.three-canvas')
@@ -51,7 +51,9 @@ const renderer = new THREE.WebGLRenderer({
     canvas:canvas
 })
 renderer.setSize(aRatio.width,aRatio.height)
-    
+   
+
+
 // render animation
 const renderAnimation = () => {
     requestAnimationFrame( renderAnimation )
@@ -72,4 +74,3 @@ let c = .0025 // starting speed
     renderer.render( scene,camera )
 }
 renderAnimation();
-console.log(scene)
